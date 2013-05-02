@@ -6,12 +6,7 @@ import java.awt.geom.Point2D;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class grapher{
-  private final int xScale = 10;          
-	private final int yScale = 10;
-	private final int size = 400;
-	private final int MIN_X = 20;
-	private final int MIN_Y = 20;
+public class Grapher{
 
 	public static void main(String[] args)
 	{
@@ -21,49 +16,55 @@ public class grapher{
 		{
 			public void run()
 			{
-				TreeFrame frame = new TreeFrame();
+				GraphFrame frame = new GraphFrame();
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
 			}
 		});
 	}
+}
 
-	class TreeFrame extends JFrame
+class GraphFrame extends JFrame
+{
+
+	public GraphFrame()
 	{
+		// Set parameters of the frame.
+		setTitle("QuickSort Graph");
+		setSize(3 * 400, 2 * 400);
 
-		public TreeFrame()
-		{
-			// Set parameters of the frame.
-			setTitle("QuickSort Graph");
-			setSize(3 * size, 2 * size);
-
-			// Add component to frame
-			TreeComponent component = new TreeComponent();
-			add(component);
-		}
-	}
-
-
-	class TreeComponent extends JComponent
-	{
-
-		public TreeComponent()
-		{
-
-			p1 = new Point2D.Double(size, size + POSITION_TRUNK * size);
-			p2 = new Point2D.Double(size, POSITION_TRUNK * size);
-		}
-
-
-		public void paintComponent(Graphics g)
-		{
-			final int MAX_Y = (this.getHeight()-MIN_Y);
-			g.drawLine(20, 0, 20, 200);
-			g.drawLine(20, 200, 200, 200);
-			for(int i = 0;i<MAX_Y/10;i++){
-				g.drawLine(MIN_X-5, MAX_Y/(10*i), MIN_X+5, MAX_Y/(10*i));
-			}
-		}
+		// Add component to frame
+		GraphComponent component = new GraphComponent();
+		add(component);
 	}
 }
 
+
+class GraphComponent extends JComponent
+{
+	private final int xScale = 10;
+	private final int yScale = 10;
+	private final int size = 400;
+	private final int MIN_X = 20;
+	private final int MIN_Y = 20;
+
+	public GraphComponent()
+	{
+
+	}
+
+
+	public void paintComponent(Graphics g)
+	{
+		final int MAX_Y = (this.getHeight()-MIN_Y);
+		final int MAX_X = this.getWidth()-MIN_X;
+		g.drawLine(MIN_X, MIN_Y, MIN_X, MAX_Y);
+		g.drawLine(MIN_X, MAX_Y, MAX_X, MAX_Y);
+		for(int i = 1;i<MAX_Y/10;i++){
+			g.drawLine(MIN_X-5, (MAX_Y)-(10*i), MIN_X+5, (MAX_Y)-(10*i));
+		}
+		for(int i = 1;i<MAX_X/xScale;i++){
+			
+		}
+	}
+}
