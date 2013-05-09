@@ -48,6 +48,9 @@ public class Student implements Comparable<Student> {
 		}
 		return x;
 	}
+	public String toString(){
+		return name+";"+gpa;
+	}
 
 
 public static void main(String[] args){
@@ -57,6 +60,10 @@ public static void main(String[] args){
 	Student[]   stud100000 = StudentAr(100000);
 	
 	System.out.println(Sort.quicksort(stud100));
+	//Test sorting
+	/*for(int i = 0;i<stud100.length;i++){
+		System.out.print(stud100[i]+", ");
+	}*/
 	System.out.println(Sort.quicksort(stud1000));
 	System.out.println(Sort.quicksort(stud10000));
 	System.out.println(Sort.quicksort(stud100000));
