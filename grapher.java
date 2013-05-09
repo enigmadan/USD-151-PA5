@@ -56,15 +56,24 @@ class GraphComponent extends JComponent
 
 	public void paintComponent(Graphics g)
 	{
-		final int MAX_Y = (this.getHeight()-MIN_Y);
+		final int MAX_Y = this.getHeight()-MIN_Y;
 		final int MAX_X = this.getWidth()-MIN_X;
 		g.drawLine(MIN_X, MIN_Y, MIN_X, MAX_Y);
 		g.drawLine(MIN_X, MAX_Y, MAX_X, MAX_Y);
-		for(int i = 1;i<MAX_Y/10;i++){
+		for(int i = 1;i+1<MAX_Y/10;i++){
 			g.drawLine(MIN_X-5, (MAX_Y)-(10*i), MIN_X+5, (MAX_Y)-(10*i));
 		}
-		for(int i = 1;i<MAX_X/xScale;i++){
-			
+		for(int i = 1;i+2<MAX_X/10;i++){
+			g.drawLine((MAX_X)-(10*i),MAX_Y-5, (MAX_X)-(10*i), MAX_Y+5);
+		}
+		int x1 = 0;
+		int y1 = 0;
+		for(int i = 1;i<MAX_X;i++){
+			int x2 = i*xScale;
+			int y2 = Sort.quicksort(Student.StudentAr(x2))/10;
+			g.drawLine(x1,y1,x2,y2);
+			x1=x2;
+			y1=y2;
 		}
 	}
 }
