@@ -30,6 +30,7 @@ public class Sort {
 				compared++;
 
 			}
+			compared++;
 
 
 			while(ar[high].compareTo(ar[pivot])>0&& high>0){
@@ -37,6 +38,7 @@ public class Sort {
 				compared++;
 
 			}
+			compared++;
 
 			if(low==high){
 				break;
