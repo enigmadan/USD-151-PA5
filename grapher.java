@@ -42,9 +42,8 @@ class GraphFrame extends JFrame
 
 class GraphComponent extends JComponent
 {
-	private final int xScale = 10;
-	private final int yScale = 10;
-	private final int size = 400;
+	private final int xScale = 1;
+	private final int yScale = 1;
 	private final int MIN_X = 20;
 	private final int MIN_Y = 20;
 
@@ -66,14 +65,24 @@ class GraphComponent extends JComponent
 		for(int i = 1;i+2<MAX_X/10;i++){
 			g.drawLine((MAX_X)-(10*i),MAX_Y-5, (MAX_X)-(10*i), MAX_Y+5);
 		}
-		int x1 = 0;
-		int y1 = 0;
-		for(int i = 1;i<MAX_X;i++){
-			int x2 = i*xScale;
-			int y2 = Sort.quicksort(Student.StudentAr(x2))/10;
-			g.drawLine(x1,y1,x2,y2);
-			x1=x2;
-			y1=y2;
+		for(int j = 1; j<40;j++){
+			int R = (int) (Math.random( )*256);
+			int G = (int)(Math.random( )*256);
+			int B= (int)(Math.random( )*256);
+			g.setColor(new Color(R, G, B));
+			int x1 = 0;
+			int y1 = 0;
+			int z1 = 0;
+			for(int i = 1;i<MAX_X/xScale;i++){
+				int x2 = i*xScale;
+				g.drawLine((i-1)*xScale+MIN_X, MAX_Y-(i-1)/yScale, i*xScale+MIN_X, MAX_Y-i/yScale);
+				g.drawLine((i-1)*xScale+MIN_X, MAX_Y-(int)Math.pow((i-1)*yScale,2), i*xScale+MIN_X, MAX_Y-(int)Math.pow(i*yScale,2));
+
+				int y2 = Sort.quicksort(Student.StudentAr(x2))/yScale;
+				g.drawLine(x1+MIN_X,MAX_Y-y1,x2+MIN_X,MAX_Y-y2);
+				x1=x2;
+				y1=y2;
+			}
 		}
 	}
 }
